@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  #divEvaluacionesGeneral.col-sm-12
+      .my-content
+        .container
+          .row
+            .col-lg-12.col-lg-offset-3.myform-cont
+              .myform-top
+                .myform-top-left
+                  h3 Listado de Evaluaciones
+                  // <p>Comision:</p>
+              .myform-bottom
+                #divEvaluaciones.container
+                  table#tablaEvaluaciones.table.table-hover
+                    tbody
+  #divEvaluarGeneral.col-lg-12
+      .my-content
+        .container
+          .row
+            .col-lg-12.col-lg-offset-3.myform-cont
+              .myform-top
+                #tituloEvaluar.myform-top-left
+              .myform-bottom
+                #divEvaluar.col-lg-12
+                  form#formEvaluacion
+                    #divCriterios
+                      | Criterios de Evaluacion 
+                      br
+                    label#comentario_general_label Comentario General
+                    br
+                    textarea.form-control(rows="4" name="comentario_general" required="true" cols="50" placeholder="Este campo es obligatorio")
+                    br
+                    label#nota_general_label  Nota General: 
+                    label#nota_general  1
+                    br
+                    input#backButton.btn.btn-primary(type="button" value="Volver" align="center")
+                    input#califButton.btn.btn-primary(type="submit" align="center")
+
+
+block scripts-extra
+  script(src='/javascripts/evaluaciones.js')

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    #ventana_login.my-content
+      .container
+        .row
+          .col-md-8.col-md-offset-3.myform-cont
+            .myform-top
+              .myform-top-left
+                h3 Ingresa a nuestro sitio.
+                p Digita tu usuario y contraseña:
+              div
+              .myform-top-right
+                i.fa.fa-user
+            .myform-bottom
+              form(role="form" action="" method="post")
+                .form-group
+                  input#form-username.form-control(type="text" name="form-username" placeholder="Usuario...")
+                .form-group
+                  input#form-password.form-control(type="password" name="form-password" placeholder="Contraseña...")
+                .form-group
+                  button#iniciar_sesion.mybtn(type="submit") Entrar
+                //.form-group
+                //  button#registrarse.mybtn(type="submit") Registrarse
