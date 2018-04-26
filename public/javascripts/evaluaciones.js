@@ -6,7 +6,7 @@ $(function(){
 	$("#backButton").click(function(){
 		volver();
 	});
-	
+
 	//Acción del submit del formulario de evaluación
 	$("#formEvaluacion").submit(function(event){
 		event.preventDefault();
@@ -18,11 +18,11 @@ $(function(){
 		}).appendTo('#formEvaluacion');
 
 		evaluar($("#formEvaluacion").serializeArray());
-		$(this).unbind('submit').submit();		
+		$(this).unbind('submit').submit();
 	});
 
 	$("#divEvaluarGeneral").hide();
-	$("#ventana_registro").hide();
+	
 	/*if (JSON.parse(window.localStorage.getItem("_login")) === null){
 		//Oculto la pantalla de evaluaciones
 		$("#divEvaluacionesGeneral").hide();
@@ -52,7 +52,7 @@ function cargarEvaluaciones(){
 	if (window.localStorage.getItem("_datos") === null) {
 		$.getJSON("/jsons/datos.json",
 				function(data){
-					window.localStorage.setItem("_datos", JSON.stringify(data));	
+					window.localStorage.setItem("_datos", JSON.stringify(data));
 					var datos = JSON.parse(window.localStorage.getItem("_datos"));
 					cargarEvaluacionesAux(datos.evaluaciones,datos.evaluaciones_comisiones);
 				});
@@ -71,7 +71,7 @@ function cargarEvaluacionesAux(evaluaciones,evaluaciones_comisiones){
 						var evaluacion_Comisiones = getElementsArray(evaluaciones_comisiones,"evaluacion",this.evaluacion);
 						//Luego se corrobora si alguna de esas comisiones son evaluadas por el evaluador (En caso de implementar el login podrían ser varios evaluadores)
 						var evaluador_Comisiones = getElementArray(evaluacion_Comisiones,"evaluador",idEvaluador);
-						
+
 						if (evaluador_Comisiones != null){
 							//Parse de la fecha
 							var from = ($(this).attr("fecha")).split("/");
@@ -84,10 +84,10 @@ function cargarEvaluacionesAux(evaluaciones,evaluaciones_comisiones){
 							else clickeable = false;
 							//Se crea el identificador ev+ id de la evauluación
 							var identificacion = "ev"+$(this).attr("evaluacion");
-							//Se agrega la fila de la evaluación a la tabla 
+							//Se agrega la fila de la evaluación a la tabla
 		        			$("#tablaEvaluaciones tbody").append("<tr bgColor=#2f96b4 id='"+identificacion+"'><td>"+$(this).attr("nombre")+"</td><td>"+$(this).attr("descripcion")+"</td><td>"+$(this).attr("fecha")+"</td></tr>");
 		        			//Si es selecccionable entonces se agrega el atributo html clickeable como true y se agrega la función que se ejecuta al clickearla
-		        			if (clickeable){ 
+		        			if (clickeable){
 		        				$("#"+identificacion).attr('clickeable','true');
 		        				$("#"+identificacion).attr('creada','false');
 		        				$("#"+identificacion).click(function(){
@@ -99,7 +99,7 @@ function cargarEvaluacionesAux(evaluaciones,evaluaciones_comisiones){
 }
 
 function clickEvaluacion(identificacion){
-	//Si la evaluación es clickeable y no fue creada es necesaria obtener de local storage los datos 
+	//Si la evaluación es clickeable y no fue creada es necesaria obtener de local storage los datos
 	if (( $("#"+identificacion).attr('clickeable') == "true") && ($("#"+identificacion).attr('creada') == "false")){
 		$("#"+identificacion).attr('clickeable','false');
 		$("#"+identificacion).attr('creada','true');
@@ -108,7 +108,7 @@ function clickEvaluacion(identificacion){
 
 		$.each(data.evaluaciones_comisiones, function() {
 			//Si la comisión corresponde a la evaluación y al evaluador entonces se agrega
-			if (("ev"+this.evaluacion == identificacion)&& (this.evaluador== idEvaluador)){ 
+			if (("ev"+this.evaluacion == identificacion)&& (this.evaluador== idEvaluador)){
 				var completa = this.evaluacion_completa;
 				var nota = (completa === true) ? "<td>Nota: "+ this.nota +"</td><td>Observación: "+this.observaciones+"</td>" : "<td> No Evaluado</td><td><button type='button' class='btn btn-primary' id='evalCom"+this.comision+"'>Evaluar</button></td>";
 				var numeroComision = this.comision;
@@ -118,9 +118,9 @@ function clickEvaluacion(identificacion){
   					horaDeEvaluar(numeroComision,comision.nombre);
 				});
 			}
-				
+
 		});
-	
+
 	} else if (( $("#"+identificacion).attr('clickeable') == "true") && ($("#"+identificacion).attr('creada') == "true")){
 		//Si había sido creada simplemente se muestra nuevamente
 		$("."+identificacion).show();
@@ -159,7 +159,7 @@ function getElementsArray(arreglo,elemento,valor){
 		}
 		i++;
 	}
-	return resultado;	
+	return resultado;
 }
 
 
@@ -189,7 +189,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
 	//Se crea una lista, se obtienen los miembros de la comisión, y se agregan a la misma
 	/*$("#tablaEvaluar tbody").prepend("<tr><td colspan='3'><ul></ul></td></tr>");*/
 	var miembros = getElementsArray(data.comisiones_integrantes,"comision",numeroDeComision);
-	
+
 	$.each(miembros,function(){
 		var alumno = getElementArray(data.alumnos,"alumno",this.alumno);
 		$("#tituloEvaluar").append("<h3>"+alumno.apellido+", "+alumno.nombre+"</h3>");
@@ -199,7 +199,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
 	var criterios = getElementsArray(data.criterio_evaluables,"evaluacion",eval.evaluacion);
 	var long = criterios.lenght
 	$.each(criterios,function(){
-		
+
 		//Creación del botón para seleccionar la nota correspondiente
 		var select = $(document.createElement('select'));
 		select.attr("name","notas");
@@ -220,7 +220,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
 				}
 				$("#nota_general").text(total/cantidadCriterios);
 		});
-		
+
 		$("#divCriterios").append(this.descripcion+" ");
 		$("#divCriterios").append(select);
 		$("#divCriterios").append("<br><textarea class='form-control' rows='2' name='obs"+this.criterio_evaluacion+"' form='formEvaluacion' cols='50' placeholder='Observación...'></textarea><br>");
@@ -229,7 +229,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
 	});
 
 	$("#nota_general").text(1);
-	
+
 
 	//Se agrega el número de comisión y de evaluación
 	$('<input>').attr({
@@ -237,7 +237,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
     	name: 'nro_Comision',
     	value: numeroDeComision
 	}).appendTo('#formEvaluacion');
-	
+
 	$('<input>').attr({
     	type: 'hidden',
     	name: 'nro_Evaluacion',
@@ -266,7 +266,7 @@ function evaluar(arreglo_formulario){
 	//Primero se modifica la evaluacion_comisiones
 	var encontrado = false;
 	var i = 0;
-	var datos = JSON.parse(window.localStorage.getItem("_datos")); 
+	var datos = JSON.parse(window.localStorage.getItem("_datos"));
 	while (!encontrado){
 		if ((datos.evaluaciones_comisiones[i].comision == numeroComision) && (datos.evaluaciones_comisiones[i].evaluacion == numeroEvaluacion)){
 			encontrado = true;
@@ -280,11 +280,11 @@ function evaluar(arreglo_formulario){
 	//Luego se modifica evaluaciones_comisiones_criterios
 	i = 0;
 	j = 0;
-	while (j<(largo - 4)){ //Mientras haya criterios 
+	while (j<(largo - 4)){ //Mientras haya criterios
 		console.log(datos.evaluaciones_comisiones_criterios);
 		if (datos.evaluaciones_comisiones_criterios[i].comision == numeroComision){
 			datos.evaluaciones_comisiones_criterios[i].nota = arreglo_formulario[j].value;
-			datos.evaluaciones_comisiones_criterios[i].observaciones = arreglo_formulario[j+1].value; 
+			datos.evaluaciones_comisiones_criterios[i].observaciones = arreglo_formulario[j+1].value;
 			j+=2;
 		}
 		i++;

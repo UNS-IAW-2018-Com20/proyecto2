@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  #ventana_registro.my-content
+      .container
+        .row
+          .col-sm-6.col-sm-offset-3.myform-cont
+            .myform-top
+              .myform-top-left
+                h3 Regístrate en nuestro sitio.
+                p Por favor ingresa tus datos personales:
+              .myform-top-right
+                i.fa.fa-user
+            .myform-bottom
+              form(role="form" action="" method="post")
+                .form-group
+                  input#form-firtsname.form-control(type="text" name="form-firtsname" placeholder="Nombres...")
+                .form-group
+                  input#form-lastname.form-control(type="text" name="form-lastname" placeholder="Apellidos...")
+                .form-group
+                  input#form-email.form-control(type="text" name="form-email" placeholder="Email...")
+                .form-group
+                  input#form-email.form-control(type="text" name="form-email-conf" placeholder="Confirmar Email...")
+                .form-group
+                  input#form-password.form-control(type="password" name="password" placeholder="Contraseña...")
+                .form-group
+                  input#form-password.form-control(type="password" name="password-conf" placeholder="Confirmar contraseña...")
+                .form-group
+                  button.mybtn(type="submit") Registrarme
+                .form-group
+                  a(href="/") Volver

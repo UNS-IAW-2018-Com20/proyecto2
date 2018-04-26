@@ -9,17 +9,24 @@ block content
               .myform-top-left
                 h3 Ingresa a nuestro sitio.
                 p Digita tu usuario y contraseña:
+
               div
               .myform-top-right
                 i.fa.fa-user
             .myform-bottom
+              unless success
+                if errors
+                  ul
+                    each val in errors
+                      li= val.msg
               form(role="form" action="" method="post")
                 .form-group
-                  input#form-username.form-control(type="text" name="form-username" placeholder="Usuario...")
+                  input#form-username.form-control(type="text" name="username" placeholder="Usuario...")
                 .form-group
-                  input#form-password.form-control(type="password" name="form-password" placeholder="Contraseña...")
+                  input#form-password.form-control(type="password" name="password" placeholder="Contraseña...")
                 .form-group
                   button#iniciar_sesion.mybtn(type="submit") Entrar
-                a(href="/auth/twitter") Log In with Twitter
-                //.form-group
-                //  button#registrarse.mybtn(type="submit") Registrarse
+                .form-group
+                  a(href="/auth/twitter") Log In with Twitter
+                .form-group
+                  a(href="/register") Registrarse
