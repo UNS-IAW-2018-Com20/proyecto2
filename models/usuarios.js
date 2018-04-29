@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
+
+mongoose.connect("mongodb://localhost:27017/datos");
+
 const usersSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  tipo:{
-    type: Number,
-    required: true
-    //Por ejemplo 1 es Evaluador, 2 es Alumno
-  }
-  tema: {
-    type: Number
-  }
+  
+
+  nombre: String,
+  apellido: String,
+  email: String,
+  password:String
+
 });
-module.exports = mongoose.model('Usuarios',userSchema);
+
+/*Crea una tabla en la base de datos*/ /*Modelos*/
+var Usuarios = mongoose.model('Usuarios',usersSchema);
+
+module.exports.Usuarios= Usuarios; 
