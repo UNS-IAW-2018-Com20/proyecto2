@@ -11,21 +11,26 @@ block content
                 p Por favor ingresa tus datos personales:
               .myform-top-right
                 i.fa.fa-user
-            .myform-bottom
+            #miboton.myform-bottom
               form(role="form" action="" method="post")
                 .form-group
                   input#form-firtsname.form-control(type="text" name="nombre" placeholder="Nombres...")
                 .form-group
                   input#form-lastname.form-control(type="text" name="apellido" placeholder="Apellidos...")
                 .form-group
-                  input#form-email.form-control(type="text" name="email" placeholder="Email...")
+                  input#id_email.form-control(type="text" name="email" placeholder="Email...")
                 .form-group
-                  input#form-email-conf.form-control(type="text" name="email-conf" placeholder="Confirmar Email...")
+                  input#id_email_conf.form-control(type="text" name="email-conf" placeholder="Confirmar Email...")
                 .form-group
-                  input#form-password.form-control(type="password" name="password" placeholder="Contraseña...")
+                  input#id_password.form-control(type="password" name="password" placeholder="Contraseña...")
                 .form-group
-                  input#form-password-conf.form-control(type="password" name="password-conf" placeholder="Confirmar contraseña...")
+                  input#id_password_conf.form-control(type="password" name="password-conf" placeholder="Confirmar contraseña...")
                 .form-group
                   button.mybtn(type="submit") Registrarme
                 .form-group
                   a(href="/") Volver
+
+
+
+block scripts-extra
+  script(src='/javascripts/alertas.js')
