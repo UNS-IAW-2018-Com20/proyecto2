@@ -15,10 +15,8 @@ block content
                 i.fa.fa-user
             .myform-bottom
               unless success
-                if errors
-                  ul
-                    each val in errors
-                      li= val.msg
+                if error
+                  #{error.msg}
               form(role="form" action="" method="post")
                 .form-group
                   input#form-username.form-control(type="text" name="username" placeholder="Usuario...")

@@ -2,15 +2,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
-//const db_uri = "mongodb://localhost:27017";
 const modeloUsuarios = require('../models/usuarios').Usuarios;
 
 
-//mongoose.connect(db_uri);
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { success: req.session.success, errors: req.session.errors });
+  res.render('login', { success: req.session.success, error: req.session.error });
   req.session.success = true;
 });
 
@@ -20,10 +17,10 @@ router.get('/register',function(req,res,next){
 
 /*si se realiza un post en Register*/
 router.post('/register',function(req,res,next){
-  
+
   /*Acá formo un modelo del usuario para insertar en la base de datos*/
   var u1=new modeloUsuarios({
-      
+
       nombre:req.body.nombre,
       apellido:req.body.apellido,
       email:req.body.email,
@@ -47,7 +44,7 @@ router.post('/register',function(req,res,next){
                                 por ahora muestro un cartel*/
                                 console.log("El mail ya fue utilizado");
                                 res.render('register');
-                          }  
+                          }
                     }
                 };
 });
@@ -62,32 +59,46 @@ router.get('/auth/twitter', passport.authenticate('twitter'));
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
 router.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+  passport.authenticate('twitter', { successRedirect: '/usuario',
+                                      failureRedirect: '/' }));
 
 
-router.post('/', function(req,res,next) {
-  req.check('username','Nombre de Usuario Incorrecto').equals('juan');
-  if (req.validationErrors()){
-    req.session.errors = req.validationErrors();
-    req.session.success = false;
-  } else {
-    req.session.success = true;
-  }
-  res.redirect('/');
+router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
+                                    failureRedirect: '/' }));
 
-  /*
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    const dbo = db.db("node_proy");
-    dbo.collection("usuarios").findOne({},function(err,result){
-      if (err) throw err;
-      if (result.username == req.body.username){
-        res.render('evaluador');
-      } else res.render('login');
-      db.close();
-    });
-  });*/
+router.get('/usuario', function(req,res,next){
+  const sess = req.session;
+  sess.nombre = req.passport;
+  res.render('evaluador', {usuario: req.session});
 });
+
+router.get('/logout', function(req, res, next) {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if(err) {
+        return done(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
+});
+
+//Función para autenticar al usuario
+function authenticate(name, pass, fn) {
+    modeloUsuarios.findOne({
+        'email': name
+    },
+    function (err, user) {
+        if (user) {
+            if (err) return fn(new Error('cannot find user'));
+            if (user.password == pass) return fn(null,user);
+            fn(new Error('invalid password'));
+        } else {
+            return fn(new Error('cannot find user'));
+        }
+    });
+}
 
 module.exports = router;
