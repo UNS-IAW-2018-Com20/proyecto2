@@ -16,9 +16,12 @@ block content
             .myform-bottom
               unless success
                 if errors
-                  ul
+                  div(class="alert alert-danger" role="alert")
                     each val in errors
-                      li= val.msg
+                      a(class="alert-link")
+                        Error #{val.msg}
+
+                      
               form(role="form" action="" method="post")
                 .form-group
                   input#form-username.form-control(type="text" name="username" placeholder="Usuario...")

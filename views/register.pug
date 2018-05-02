@@ -14,19 +14,25 @@ block content
             #miboton.myform-bottom
               form(role="form" action="" method="post")
                 .form-group
-                  input#form-firtsname.form-control(type="text" name="nombre" placeholder="Nombres...")
+                  div#div_nombre.form-group
+                    input#form-firtsname.form-control(type="text" name="nombre" placeholder="Nombres...")
                 .form-group
-                  input#form-lastname.form-control(type="text" name="apellido" placeholder="Apellidos...")
+                  div#div_apellido.form-group
+                    input#form-lastname.form-control(type="text" name="apellido" placeholder="Apellidos...")
                 .form-group
-                  input#id_email.form-control(type="text" name="email" placeholder="Email...")
+                  div#div_email.form-group(class="input-group")
+                    input#id_email.form-control(type="text" name="email" placeholder="Email...")
                 .form-group
-                  input#id_email_conf.form-control(type="text" name="email-conf" placeholder="Confirmar Email...")
+                  div#div_email_conf.form-group(class="input-group")
+                    input#id_email_conf.form-control(type="text" name="email-conf" placeholder="Confirmar Email...")
                 .form-group
-                  input#id_password.form-control(type="password" name="password" placeholder="Contraseña...")
+                  div#div_password.form-group(class="input-group")
+                    input#id_password.form-control(type="password" name="password" placeholder="Contraseña...")
                 .form-group
-                  input#id_password_conf.form-control(type="password" name="password-conf" placeholder="Confirmar contraseña...")
+                  div#div_password_conf.form-group(class="input-group")
+                    input#id_password_conf.form-control(type="password" name="password-conf" placeholder="Confirmar contraseña...")
                 .form-group
-                  button.mybtn(type="submit") Registrarme
+                  button#register.mybtn(type="submit") Registrarme
                 .form-group
                   a(href="/") Volver
 
