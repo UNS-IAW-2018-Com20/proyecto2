@@ -5,12 +5,45 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const TwitterStrategy = require('passport-twitter').Strategy;
+const LocalStrategy =require('passport-local').Strategy;
 const configAuth = require('./auth');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const expressSession = require('express-session');
 const expressValidator = require('express-validator');
+const mongoose = require('mongoose');
+const modeloUsuarios = require('./models/usuarios').Usuarios;
 const app = express();
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+      modeloUsuarios.findOne({
+        email: username
+      }, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+
+        if (!user) {
+          return done(null, false);
+        }
+
+        if (user.password != password) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+  }
+));
 
 passport.use(new TwitterStrategy({
     consumerKey: configAuth.twitterAuth.clientID,
@@ -18,9 +51,23 @@ passport.use(new TwitterStrategy({
     callbackURL: configAuth.twitterAuth.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ twitterId: profile.id}, function(err, user) {
+    modeloUsuarios.findOne({ 'twitterId': profile.id}, function(err, user) {
       if (err) { return done(err); }
-      done(null, user);
+      if (user){
+        return done(null, user);
+      } else {
+        var newUser = new modeloUsuarios({
+          nombre: profile.displayName,
+          email: profile.email,
+          twitterId: profile.id,
+          tema: 1
+        });
+        newUser.save(function(err){
+          if (err)
+            throw err;
+          return done(null, newUser);
+        });
+      }
     });
   }
 ));
@@ -59,7 +106,8 @@ app.use(expressValidator());
 //tw
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 

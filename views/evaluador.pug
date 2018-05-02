@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
   #divEvaluacionesGeneral.col-sm-12
       .my-content
         .container
@@ -25,13 +26,13 @@ block content
                 #divEvaluar.col-lg-12
                   form#formEvaluacion
                     #divCriterios
-                      | Criterios de Evaluacion 
+                      | Criterios de Evaluacion
                       br
                     label#comentario_general_label Comentario General
                     br
                     textarea.form-control(rows="4" name="comentario_general" required="true" cols="50" placeholder="Este campo es obligatorio")
                     br
-                    label#nota_general_label  Nota General: 
+                    label#nota_general_label  Nota General:
                     label#nota_general  1
                     br
                     input#backButton.btn.btn-primary(type="button" value="Volver" align="center")
