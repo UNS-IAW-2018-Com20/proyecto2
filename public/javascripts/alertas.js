@@ -19,11 +19,13 @@
 			var maill = $("#id_email").val().length;
 
 			console.log("entro :" +valueEmail+ "-"+ maill);
-			boton_resgistrar();
+			boton_registrar();
 			$("#alerta1").remove();
 
 
-			/*if(value!=mail && valueEmail>=maill){*/
+			if(value!="" | mail!=""){
+
+				/*if(value!=mail && valueEmail>=maill){*/
 	       	if(value!=mail /*&& valueEmail>=maill*/){
 	       		console.log(eliminar_mail);
 	       		if(eliminar_mail==2){
@@ -59,6 +61,10 @@
 	       		
 	       		
 	       	}
+
+			}
+
+			
 			          
 		});
  
@@ -69,7 +75,7 @@
        	var password = $("#id_password").val();
 
        	
-       	boton_resgistrar();
+       	boton_registrar();
        	console.log(value);
        	console.log(password);
 
@@ -77,9 +83,11 @@
 			var pass = $("#id_password").val().length;
 
 			console.log("entro :" +valuePassword+ "-"+ pass);
-       	
+       	$("#alert2").remove();
 
-       	if(value!=password /*&& valuePassword>=pass*/){
+       	if(value!=""|password!=""){
+
+       		if(value!=password /*&& valuePassword>=pass*/){
        		console.log(eliminar_password);
        		if(eliminar_password==2){
        			$("#alerta2").remove();
@@ -100,8 +108,8 @@
 
        		if(eliminar_mail==2){
 	       			$("#alerta2").remove();
-	       			eliminarAlertasDIV_iguales();
-	       			eliminarAlertasDIV_distintas();
+	       			eliminarAlertasDIV_iguales_pass();
+	       			eliminarAlertasDIV_distintas_pass();
 	       			console.log("entro y elimino");
 	       		}
        		console.log("No son iguales");
@@ -111,6 +119,9 @@
        		eliminarpass=2;
 	       	
        	}
+       	}
+
+       	
 		          
 	});
 	
@@ -216,7 +227,7 @@ function eliminarAlertasDIV_distintas_pass(){
 }
 
 
-function boton_resgistrar(){
+function boton_registrar(){
 
 	var value_email = $("#id_email_conf").val();
 	var mail = $("#id_email").val();
@@ -225,14 +236,33 @@ function boton_resgistrar(){
 	var password = $("#id_password").val();
 
 		if(value_email!=mail || value_pass!=password){
-			$("#register").attr("disabled", false);
+			$('#register').attr("disabled", true);
 			console.log("ENTRO EN BOTON");
 		}
 		else{
-			$("#register").attr("disabled", true);
+			$('#register').attr("disabled", false);
 			console.log("NO ENTRO EN BOTON");
 		}
 }
 
+$("#register").hover(function(){
 
+	let nombre,apellido,email,email_conf,passwor,password_conf;
+	nombre = $("#id_nombre").val();
+	apellido = $("#id_apellido").val();
+	email = $("#id_email").val();
+	email_conf = $("#id_email_conf").val();
+	password = $("#id_password").val();
+	password_conf = $("#id_password_conf").val();
+	
+	if(nombre==""|apellido==""|email==""|email_conf==""|password==""|password_conf==""){
+		$('#register').attr("disabled", true);/*deshabilito el boton REGISTRAR*/
+		$("#miboton").prepend('<div id="alerta3" class="alert alert-danger" role="alert"> Error: Rellene todos los campos </div>');
+
+	}
+	else
+		$("#alerta3").remove();
+
+
+})
 
