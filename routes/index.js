@@ -24,7 +24,9 @@ router.post('/register',function(req,res,next){
       nombre:req.body.nombre,
       apellido:req.body.apellido,
       email:req.body.email,
-      password:req.body.password
+      password:req.body.password,
+      tema:1,
+      tipo:'Alumno'
   })
 
   /*Esta consulta es para comprobar si hay un usuario con la misma dirección de Email*/
@@ -67,9 +69,7 @@ router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
                                     failureRedirect: '/' }));
 
 router.get('/usuario', function(req,res,next){
-  const sess = req.session;
-  sess.nombre = req.passport;
-  res.render('evaluador', {usuario: req.session});
+  res.render(req.user.tipo);
 });
 
 router.get('/logout', function(req, res, next) {

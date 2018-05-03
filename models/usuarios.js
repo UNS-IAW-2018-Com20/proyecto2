@@ -8,7 +8,8 @@ const usersSchema = new mongoose.Schema({
   email: String,
   password: String,
   twitterId: String,
-  tema: Number
+  tema: Number,
+  tipo: String
 
 });
 

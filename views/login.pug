@@ -1,4 +1,4 @@
-extends layout
+extends layout2
 
 block content
     #ventana_login.my-content
@@ -15,18 +15,12 @@ block content
                 i.fa.fa-user
             .myform-bottom
               unless success
-<<<<<<< HEAD
                 if errors
                   div(class="alert alert-danger" role="alert")
                     each val in errors
                       a(class="alert-link")
                         Error #{val.msg}
 
-                      
-=======
-                if error
-                  #{error.msg}
->>>>>>> b9e28a24c63b5636e480ed3a2b71f4bbcfd58a62
               form(role="form" action="" method="post")
                 .form-group
                   input#form-username.form-control(type="text" name="username" placeholder="Usuario...")

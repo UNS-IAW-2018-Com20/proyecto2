@@ -9,21 +9,13 @@ html
      div
        head
          nav.navbar.fixed-top.navbar-toggleable-sm.navbar-light
-           button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded=" false" aria-label="Toggle navigation")
-             span.navbar-toggler-icon
            a.navbar-brand(href="/")
              img(src="/images/logo_UNS.png" width="50" height="50" alt="UNS")
              |                UNS
-           #navbarTogglerDemo01.collapse.navbar-collapse
-             #misMenues.navbar-nav.text-center.mr-auto
-             form#menuDerecha.form-inline.my-2.my-lg-0.d-flex.flex-row.justify-content-center
-               button#b.btn.btn-primary.mr-2(type="button" href="#") Estilo
-               button#bLogout.btn.btn-primary.mr-2(type="button") Logout
 
   block content
   script(src='/javascripts/jquery-3.3.1.min.js')
   script(src='/javascripts/bootstrap.min.js')
   script(src='/javascripts/main.js')
   script(src='/javascripts/cambioEstilo.js')
-  script(src='/javascripts/botonLogout.js')
   block scripts-extra
