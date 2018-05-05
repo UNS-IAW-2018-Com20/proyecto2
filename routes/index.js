@@ -69,7 +69,7 @@ router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
                                     failureRedirect: '/' }));
 
 router.get('/usuario', function(req,res,next){
-  res.render(req.user.tipo);
+  res.render(req.user.tipo, {nombre: req.user.nombre} );
 });
 
 router.get('/logout', function(req, res, next) {

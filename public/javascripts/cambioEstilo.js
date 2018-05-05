@@ -9,10 +9,10 @@ function cambiarEstilo(){
 		$("head").append('<link id="estiloCargado" rel="stylesheet" href="/stylesheets/estiloOpcion.css">');
 
 
-	$("#b").click(function(){
+	$("#bEstilo").click(function(){
 
- 	 
- 	 
+
+
  	 var cambioEstilo= localStorage.getItem("Estilo");
 
  	 if(cambioEstilo==null){
@@ -28,11 +28,11 @@ function cambiarEstilo(){
 	 	 	else{//Si estilo es igual a 1
 					$("head").append('<link id="estiloCargado" rel="stylesheet" href="/stylesheets/estiloOpcion.css">');
 	 	 			localStorage.setItem("Estilo",2);
-	 	 		
+
 	 	 		}
 
  	 }
-  			
+
 
 	});
 
