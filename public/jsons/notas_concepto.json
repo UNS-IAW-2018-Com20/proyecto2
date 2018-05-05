@@ -1,0 +1,26 @@
+[
+          {
+            "concepto":1,
+            "descripcion": "Mal"
+          },
+
+          {
+            "concepto":2,
+            "descripcion": "Regular"
+          },
+
+          {
+            "concepto":3,
+            "descripcion": "Bien"
+          },
+
+          {
+            "concepto":4,
+            "descripcion": "Muy Bien"
+          },
+
+          {
+            "concepto":5,
+            "descripcion": "Excelente"
+          }
+]

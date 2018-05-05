@@ -1,0 +1,16 @@
+[
+          {
+            "evaluacion_tipo":1,
+            "nombre":"Parcial"
+          },
+
+          {
+            "evaluacion_tipo":2,
+            "nombre":"Proyecto"
+          },
+
+          {
+            "evaluacion_tipo":3,
+            "nombre":"Recuperatorio"
+          }
+]
