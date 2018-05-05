@@ -5,15 +5,22 @@
 	var eliminarpass=1;
 
 
- 
+ 		
 
-	   	$("#id_email_conf").on('keyup', function(){
+	   function alerta_mail(id){
+
+		$(id).on('keyup', function(){
 	        var value = $("#id_email_conf").val();
 	       	var mail = $("#id_email").val();
 
 	       	console.log(value);
 	       	console.log(mail);
 	       	
+	       	/**/
+
+
+
+	       	/**/
 
 	       	var valueEmail = $("#id_email_conf").val().length;
 			var maill = $("#id_email").val().length;
@@ -66,11 +73,18 @@
 
 			
 			          
-		});
+		});	  
+	   }
  
+	   $("#id_email_conf").focus( function(){
 
+	   		alerta_mail("#id_email_conf");
+	   		alerta_mail("#id_email");
+	   });
 	
-		$("#id_password_conf").on('keyup', function(){
+function alerta_password(p){
+
+	$(p).on('keyup', function(){
         var value = $("#id_password_conf").val();
        	var password = $("#id_password").val();
 
@@ -83,7 +97,7 @@
 			var pass = $("#id_password").val().length;
 
 			console.log("entro :" +valuePassword+ "-"+ pass);
-       	$("#alert2").remove();
+       	$("#alerta2").remove();
 
        	if(value!=""|password!=""){
 
@@ -95,7 +109,8 @@
 	       		eliminarAlertasDIV_distintas_pass();
        			console.log("entro y elimino");
        		}
-
+       		$("#spanalert_iguales_pass").remove();
+       		$("#spanalert_iguales_conf_pass").remove();
        		console.log("son iguales");
        		$("#miboton").prepend('<div id="alerta2" class="alert alert-danger" role="alert"> Error: Las contraseñas no coinciden </div>');
        		eliminar_password=2;
@@ -106,7 +121,7 @@
        	}
        	else{
 
-       		if(eliminar_mail==2){
+       		if(eliminar_password==2){
 	       			$("#alerta2").remove();
 	       			eliminarAlertasDIV_iguales_pass();
 	       			eliminarAlertasDIV_distintas_pass();
@@ -123,7 +138,14 @@
 
        	
 		          
-	});
+		});
+}
+
+	$("#id_password_conf").focus( function(){
+
+	   		alerta_password("#id_password_conf");
+	   		alerta_password("#id_password");
+	   });
 	
 function agregarAlertasDIV_iguales(){
 
@@ -175,7 +197,79 @@ function eliminarAlertasDIV_distintas(){
 	$("#spanalert_dist_conf").remove();
 }
 
+
+
+
 /**/
+
+function agregarAlertasDIV_iguales_pass(){
+
+	$("#div_password").addClass("has-success");
+	$("#div_password_conf").addClass("has-success");
+	$("#id_password_conf").addClass("alert alert-success");
+	$("#id_password").addClass("alert alert-success");
+	$("#spanalert_dist_pass").remove();
+	$("#spanalert_dist_conf_pass").remove();
+	$("#div_password").append('<span id="spanalert_iguales_pass" class="fa fa-check form-control-feedback"></span');
+	$("#div_password_conf").append('<span id="spanalert_iguales_conf_pass" class="fa fa-check form-control-feedback"></span');
+}
+
+	
+function agregarAlertasDIV_distintas_pass(){
+
+	$("#div_password").addClass("has-danger");
+	$("#div_password_conf").addClass("has-danger");
+	$("#id_password_conf").addClass("alert alert-danger");
+	$("#id_password").addClass("alert alert-danger");
+
+	$("#spanalert_iguales_pass").remove();
+	$("#spanalert_iguales_conf_pass").remove();
+	$("#div_password").append('<span id="spanalert_dist_pass" class="fa fa-exclamation form-control-feedback"></span');
+	$("#div_password_conf").append('<span id="spanalert_dist_conf_pass" class="fa fa-exclamation form-control-feedback"></span');
+}
+
+function eliminarAlertasDIV_iguales_pass(){
+
+	$("#div_password").removeClass("has-success");
+	$("#div_password_conf").removeClass("has-success");
+	$("#id_password_conf").removeClass("alert alert-success");
+	$("#id_password").removeClass("alert alert-success");
+	
+	$("#spanalert_iguales_pass").remove();
+	$("#spanalert_iguales_conf_pass").remove();
+
+}
+	
+function eliminarAlertasDIV_distintas_pass(){
+
+	$("#div_password").removeClass("has-danger");
+	$("#div_password_conf").removeClass("has-danger");
+	$("#id_password_conf").removeClass("alert alert-danger");
+	$("#id_password").removeClass("alert alert-danger");
+	
+
+	$("#spanalert_dist_pass").remove();
+	$("#spanalert_dist_conf_pass").remove();
+}
+
+
+
+
+
+/**/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 function agregarAlertasDIV_iguales_pass(){
 
 	$("#div_password").addClass("has-success");
@@ -225,7 +319,7 @@ function eliminarAlertasDIV_distintas_pass(){
 	$("#spanalert_dist_pass").remove();
 	$("#spanalert_dist_conf_pass").remove();
 }
-
+*/
 
 function boton_registrar(){
 
@@ -247,7 +341,7 @@ function boton_registrar(){
 
 $("#register").hover(function(){
 
-	let nombre,apellido,email,email_conf,passwor,password_conf;
+	var nombre,apellido,email,email_conf,password,password_conf;
 	nombre = $("#id_nombre").val();
 	apellido = $("#id_apellido").val();
 	email = $("#id_email").val();
@@ -258,11 +352,41 @@ $("#register").hover(function(){
 	if(nombre==""|apellido==""|email==""|email_conf==""|password==""|password_conf==""){
 		$('#register').attr("disabled", true);/*deshabilito el boton REGISTRAR*/
 		$("#miboton").prepend('<div id="alerta3" class="alert alert-danger" role="alert"> Error: Rellene todos los campos </div>');
-
+		console.log("VACIOOOOOOO");
 	}
 	else
+		$('#register').attr("disabled", false);
+
+
+});
+
+
+$("#id_email,#id_email_conf,#id_password,#id_password_conf,#id_nombre,#id_apellido").on('keyup', function(){
+
 		$("#alerta3").remove();
+		$('#register').attr("disabled", false);
+		
+});
 
 
-})
+$("#register").click( function(){
+
+	var nombre,apellido,email,email_conf,password,password_conf;
+	nombre = $("#id_nombre").val();
+	apellido = $("#id_apellido").val();
+	email = $("#id_email").val();
+	email_conf = $("#id_email_conf").val();
+	password = $("#id_password").val();
+	password_conf = $("#id_password_conf").val();
+	
+	if(nombre==""|apellido==""|email==""|email_conf==""|password==""|password_conf==""){
+		$('#register').attr("disabled", true);/*deshabilito el boton REGISTRAR*/
+		$("#miboton").prepend('<div id="alerta3" class="alert alert-danger" role="alert"> Error: Rellene todos los campos </div>');
+		console.log("VACIOOOOOOO");
+
+	}
+
+
+	
+});
 
