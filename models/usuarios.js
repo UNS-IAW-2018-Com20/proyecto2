@@ -1,19 +1,27 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://admin:sudo@ds115350.mlab.com:15350/sistema-evaluaciones");
-
-const usersSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   nombre: String,
   apellido: String,
   email: String,
   password: String,
   twitterId: String,
-  tema: Number,
-  tipo: String
+  darkTheme: Boolean,
+  tipo: String,
+  id: Number
 
 });
 
-/*Crea una tabla en la base de datos*/ /*Modelos*/
-const Usuarios = mongoose.model('Usuarios',usersSchema);
+const alumnoSchema = new mongoose.Schema({
+  _id: Number,
+  apellido: String,
+  nombre: String,
+  lu: Number
+})
 
-module.exports.Usuarios= Usuarios;
+/*Crea una tabla en la base de datos*/ /*Modelos*/
+const usuarios = mongoose.model('usuarios',userSchema);
+const alumnos = mongoose.model('alumnos',alumnoSchema);
+
+module.exports.usuarios= usuarios;
+module.exports.alumnos= alumnos;

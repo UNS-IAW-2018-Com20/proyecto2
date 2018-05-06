@@ -14,3 +14,7 @@ block content
                 #divEvaluaciones.container
                   table#tablaEvaluaciones.table.table-hover
                     tbody
+                      each val in evaluaciones
+                        tr
+                          td
+                            #{val.evaluacion}
