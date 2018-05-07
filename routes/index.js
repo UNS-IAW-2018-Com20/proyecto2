@@ -43,6 +43,8 @@ router.get('/evaluador',function(req,res,next){
 //Página principal del alumno
 router.get('/alumno', alumnoController.mostrarEvaluaciones);
 
+//Cambio de estilo
+router.get('/cambioEstilo', userController.cambiarEstilo);
 //Logout
 router.get('/logout', userController.logout);
 

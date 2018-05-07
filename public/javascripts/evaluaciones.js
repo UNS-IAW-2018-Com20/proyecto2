@@ -2,11 +2,6 @@ var idEvaluador = 1;
 
 $(function(){
 
-	//Acción del click en el botón de volver de la pantalla de evaluación
-	$("#backButton").click(function(){
-		volver();
-	});
-
 	//Acción del submit del formulario de evaluación
 	$("#formEvaluacion").submit(function(event){
 		event.preventDefault();
@@ -21,16 +16,6 @@ $(function(){
 		$(this).unbind('submit').submit();
 	});
 
-	$("#divEvaluarGeneral").hide();
-	
-	/*if (JSON.parse(window.localStorage.getItem("_login")) === null){
-		//Oculto la pantalla de evaluaciones
-		$("#divEvaluacionesGeneral").hide();
-	} else {
-		$("#ventana_login").hide();
-		modificarMenu();
-		cargarEvaluaciones();
-	}*/
 	cargarEvaluaciones();
 
 
@@ -293,10 +278,4 @@ function evaluar(arreglo_formulario){
 	window.localStorage.setItem("_datos", JSON.stringify(datos));
 }
 
-function volver(){
-
-	$("#divCriterios").empty();
-	$("#divEvaluarGeneral").hide();
-	$("#divEvaluacionesGeneral").show();
-	$("#tituloEvaluar").empty();
 }

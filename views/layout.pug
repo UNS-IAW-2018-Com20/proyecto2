@@ -3,11 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-    if !dark
-      link(rel='stylesheet', href='/stylesheets/estiloInicial.css')
-    else
-      link(rel='stylesheet', href='/stylesheets/estiloOpcion.css')
+    link(rel='stylesheet', href='/stylesheets/estiloInicial.css')
     link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
+    if dark
+      link#estiloCambiado(rel='stylesheet', href='/stylesheets/estiloOpcion.css')
   body
      div
        head

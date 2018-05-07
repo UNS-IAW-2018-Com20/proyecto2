@@ -70,7 +70,7 @@ passport.use(new TwitterStrategy({
           nombre: profile.displayName,
           email: profile.email,
           twitterId: profile.id,
-          tema: 1,
+          darkTheme: false,
           tipo:'Alumno'
         });
         newUser.save(function(err){
