@@ -12,6 +12,8 @@ block content
               .myform-top-right
                 i.fa.fa-user
             #miboton.myform-bottom
+              if(alerta==1)
+                div#alerta4.form-group(class="alert alert-danger" role="alert") El mail ya fue utilizado, utilice otro.
               form(role="form" action="" method="post")
                 .form-group
                   div#div_nombre.form-group

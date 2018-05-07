@@ -14,18 +14,13 @@ block content
               .myform-top-right
                 i.fa.fa-user
             .myform-bottom
-              unless success
-                if errors
-                  div(class="alert alert-danger" role="alert")
-                    each val in errors
-                      a(class="alert-link")
-                        Error #{val.msg}
-
+              if(alertalog==1)
+                div#alerta5.form-group(class="alert alert-danger" role="alert") Error: usuario o contraseña incorrectos.
               form(role="form" action="" method="post")
                 .form-group
-                  input#form-username.form-control(type="text" name="username" placeholder="Usuario...")
+                  input#email.form-control(type="text" name="username" placeholder="Email...")
                 .form-group
-                  input#form-password.form-control(type="password" name="password" placeholder="Contraseña...")
+                  input#password.form-control(type="password" name="password" placeholder="Contraseña...")
                 .form-group
                   button#iniciar_sesion.mybtn(type="submit") Entrar
                 .form-group

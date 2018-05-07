@@ -7,7 +7,7 @@
 
  		
 
-	   function alerta_mail(id){
+function alerta_mail(id){
 
 		$(id).on('keyup', function(){
 	        var value = $("#id_email_conf").val();
@@ -141,11 +141,11 @@ function alerta_password(p){
 		});
 }
 
-	$("#id_password_conf").focus( function(){
+$("#id_password_conf").focus( function(){
 
-	   		alerta_password("#id_password_conf");
-	   		alerta_password("#id_password");
-	   });
+   		alerta_password("#id_password_conf");
+   		alerta_password("#id_password");
+   });
 	
 function agregarAlertasDIV_iguales(){
 
@@ -253,74 +253,6 @@ function eliminarAlertasDIV_distintas_pass(){
 }
 
 
-
-
-
-/**/
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function agregarAlertasDIV_iguales_pass(){
-
-	$("#div_password").addClass("has-success");
-	$("#div_password_conf").addClass("has-success");
-	$("#id_password_conf").addClass("alert alert-success");
-	$("#id_password").addClass("alert alert-success");
-	$("#spanalert_dist_pass").remove();
-	$("#spanalert_dist_conf_pass").remove();
-	$("#div_password").append('<span id="spanalert_iguales_pass" class="fa fa-check form-control-feedback"></span');
-	$("#div_password_conf").append('<span id="spanalert_iguales_conf_pass" class="fa fa-check form-control-feedback"></span');
-}
-
-	
-function agregarAlertasDIV_distintas_pass(){
-
-	$("#div_password").addClass("has-danger");
-	$("#div_password_conf").addClass("has-danger");
-	$("#id_password_conf").addClass("alert alert-danger");
-	$("#id_password").addClass("alert alert-danger");
-
-	$("#spanalert_iguales_pass").remove();
-	$("#spanalert_iguales_conf_pass").remove();
-	$("#div_password").append('<span id="spanalert_dist_pass" class="fa fa-exclamation form-control-feedback"></span');
-	$("#div_password_conf").append('<span id="spanalert_dist_conf_pass" class="fa fa-exclamation form-control-feedback"></span');
-}
-
-function eliminarAlertasDIV_iguales_pass(){
-
-	$("#div_password").removeClass("has-success");
-	$("#div_password_conf").removeClass("has-success");
-	$("#id_password_conf").removeClass("alert alert-success");
-	$("#id_password").removeClass("alert alert-success");
-	
-	$("#spanalert_iguales_pass").remove();
-	$("#spanalert_iguales_conf_pass").remove();
-
-}
-	
-function eliminarAlertasDIV_distintas_pass(){
-
-	$("#div_password").removeClass("has-danger");
-	$("#div_password_conf").removeClass("has-danger");
-	$("#id_password_conf").removeClass("alert alert-danger");
-	$("#id_password").removeClass("alert alert-danger");
-
-
-	$("#spanalert_dist_pass").remove();
-	$("#spanalert_dist_conf_pass").remove();
-}
-*/
-
 function boton_registrar(){
 
 	var value_email = $("#id_email_conf").val();
@@ -357,6 +289,7 @@ $("#register").hover(function(){
 	else
 		$('#register').attr("disabled", false);
 
+	$("#alerta4").remove();
 
 });
 
@@ -364,6 +297,7 @@ $("#register").hover(function(){
 $("#id_email,#id_email_conf,#id_password,#id_password_conf,#id_nombre,#id_apellido").on('keyup', function(){
 
 		$("#alerta3").remove();
+		$("#alerta4").remove();
 		$('#register').attr("disabled", false);
 		
 });
@@ -389,4 +323,9 @@ $("#register").click( function(){
 
 	
 });
+
+/*Login*/
+$("#email,#password").on('keyup', function(){
+	$("#alerta5").remove();
+})
 
