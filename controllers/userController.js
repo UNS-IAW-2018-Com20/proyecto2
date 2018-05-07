@@ -1,4 +1,5 @@
 const modeloUsuarios = require('../models/usuarios').usuarios;
+var alerta=0;
 
 exports.registrar = function (req,res,next){
   /*Acá formo un modelo del usuario para insertar en la base de datos*/
@@ -18,17 +19,20 @@ exports.registrar = function (req,res,next){
               .exec(obtenerUsuarios);
               function obtenerUsuarios(err,Us){
 
-                    if(err)
+                    if(err){
                       console.log("Error: "+err);
+                    }
                     else{
                           if(Us==""){
                            u1.save(); /*esto guarda los datos de "u1" en la base de datos "DATOS", en la tabla "usuarios"*/
-                           res.send("Reibimos los datos ");
+                           //res.send("Reibimos los datos ");
+                           res.redirect('/');
                          }
                           else{ /*Acá puede ir el codigo para mostrar en el REGISTER, que el mail ingresado ya fue utilizado
                                 por ahora muestro un cartel*/
-                                console.log("El mail ya fue utilizado");
-                                res.render('register');
+                                console.log("El mail ya fue utilizado, tiene que mostrar el cartel");
+                                res.render('register',{alerta:1});
+
                           }
                     }
                 };
