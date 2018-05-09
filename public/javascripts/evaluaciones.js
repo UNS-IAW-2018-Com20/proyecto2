@@ -1,7 +1,5 @@
-var idEvaluador = 1;
-
 $(function(){
-
+	/*
 	//Acción del submit del formulario de evaluación
 	$("#formEvaluacion").submit(function(event){
 		event.preventDefault();
@@ -15,73 +13,13 @@ $(function(){
 		evaluar($("#formEvaluacion").serializeArray());
 		$(this).unbind('submit').submit();
 	});
-
+*/
 	cargarEvaluaciones();
 
 
-	if($(window).width()<=421)
-  				$("#divEvaluaciones").attr("class","table-responsive");
 
-	$(window).resize(function() {
-
-  			if($(window).width()<=421)
-  				$("#divEvaluaciones").attr("class","table-responsive");
-  			else
-  				$("#divEvaluaciones").attr("class","table-responsive");
-
-	});
 
 });
-
-function cargarEvaluaciones(){
-	if (window.localStorage.getItem("_datos") === null) {
-		$.getJSON("/jsons/datos.json",
-				function(data){
-					window.localStorage.setItem("_datos", JSON.stringify(data));
-					var datos = JSON.parse(window.localStorage.getItem("_datos"));
-					cargarEvaluacionesAux(datos.evaluaciones,datos.evaluaciones_comisiones);
-				});
-	} else {
-		//Cargo las evaluaciones desde el localStorage
-		var datos = JSON.parse(window.localStorage.getItem("_datos"));
-		cargarEvaluacionesAux(datos.evaluaciones,datos.evaluaciones_comisiones);
-	}
-
-}
-
-function cargarEvaluacionesAux(evaluaciones,evaluaciones_comisiones){
-	//Carga las evaluaciones desde evaluaciones
-	$.each(evaluaciones, function() {
-						//Por cada evaluación se obtienen las comisiones de la misma
-						var evaluacion_Comisiones = getElementsArray(evaluaciones_comisiones,"evaluacion",this.evaluacion);
-						//Luego se corrobora si alguna de esas comisiones son evaluadas por el evaluador (En caso de implementar el login podrían ser varios evaluadores)
-						var evaluador_Comisiones = getElementArray(evaluacion_Comisiones,"evaluador",idEvaluador);
-
-						if (evaluador_Comisiones != null){
-							//Parse de la fecha
-							var from = ($(this).attr("fecha")).split("/");
-							var f = new Date(from[2], from[1] - 1, from[0]);
-							var actual = new Date();
-							var clickeable;
-							//Si la fecha de la evaluación es anterior o igual a la actual entonces es seleccionable (clickeable)
-							if (f <= actual)
-								clickeable = true;
-							else clickeable = false;
-							//Se crea el identificador ev+ id de la evauluación
-							var identificacion = "ev"+$(this).attr("evaluacion");
-							//Se agrega la fila de la evaluación a la tabla
-		        			$("#tablaEvaluaciones tbody").append("<tr bgColor=#2f96b4 id='"+identificacion+"'><td>"+$(this).attr("nombre")+"</td><td>"+$(this).attr("descripcion")+"</td><td>"+$(this).attr("fecha")+"</td></tr>");
-		        			//Si es selecccionable entonces se agrega el atributo html clickeable como true y se agrega la función que se ejecuta al clickearla
-		        			if (clickeable){
-		        				$("#"+identificacion).attr('clickeable','true');
-		        				$("#"+identificacion).attr('creada','false');
-		        				$("#"+identificacion).click(function(){
-		        					clickEvaluacion(identificacion);
-		        				});
-		        			}
-	        			}
-	   });
-}
 
 function clickEvaluacion(identificacion){
 	//Si la evaluación es clickeable y no fue creada es necesaria obtener de local storage los datos

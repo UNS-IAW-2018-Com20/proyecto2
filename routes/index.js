@@ -4,6 +4,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const userController = require('../controllers/userController');
 const alumnoController = require('../controllers/alumnoController');
+const evaluadorController = require('../controllers/evaluadorController');
+const datosController = require('../controllers/datosController');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login', { success: req.session.success, error: req.session.error });
@@ -37,11 +39,21 @@ router.get('/usuario', userController.redireccionarPaginaUsuario);
 
 //Página principal del evaluador
 router.get('/evaluador',function(req,res,next){
-  res.render('evaluador',{nombre: req.user.nombre});
+  res.render('evaluador',{nombre: req.user.nombre, dark:req.user.darkTheme});
 });
+router.get('/evaluador/obtenerEvaluaciones',evaluadorController.mostrarEvaluaciones);
 
 //Página principal del alumno
-router.get('/alumno', alumnoController.mostrarEvaluaciones);
+router.get('/alumno', function(req,res,next){
+  res.render('alumno',{nombre:req.user.nombre, dark:req.user.darkTheme});
+});
+router.get('/alumno/obtenerEvaluaciones', alumnoController.mostrarEvaluaciones);
+
+router.get('/datos/obtenerEvaluaciones/:id',datosController.mostrarEvaluacionEspecifica);
+
+router.get('/datos/obtenerComisiones/:id',datosController.mostrarComisionEspecifica);
+
+router.get('/datos/evaluar/:id',datosController.evaluarComision);
 
 //Cambio de estilo
 router.get('/cambioEstilo', userController.cambiarEstilo);
