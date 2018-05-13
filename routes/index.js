@@ -38,15 +38,13 @@ router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
 router.get('/usuario', userController.redireccionarPaginaUsuario);
 
 //Página principal del evaluador
-router.get('/evaluador',function(req,res,next){
-  res.render('evaluador',{nombre: req.user.nombre, dark:req.user.darkTheme});
-});
+router.get('/evaluador',evaluadorController.mostrarVista);
+
 router.get('/evaluador/obtenerEvaluaciones',evaluadorController.mostrarEvaluaciones);
 
 //Página principal del alumno
-router.get('/alumno', function(req,res,next){
-  res.render('alumno',{nombre:req.user.nombre, dark:req.user.darkTheme});
-});
+router.get('/alumno', alumnoController.mostrarEvaluaciones);
+
 router.get('/alumno/obtenerEvaluaciones', alumnoController.mostrarEvaluaciones);
 
 router.get('/datos/obtenerEvaluaciones/:id',datosController.mostrarEvaluacionEspecifica);

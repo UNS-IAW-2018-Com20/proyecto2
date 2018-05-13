@@ -14,6 +14,17 @@ block content
                 #divEvaluaciones.container
                   table#tablaEvaluaciones.table.table-hover
                     tbody
+                      each val in evaluaciones
+                        tr
+                          td #{val.evaluacion.nombre}
+                          td #{val.evaluacion.descripcion}
+                          if val.evaluacion.nota == ""
+                            td Nota: #{val.evaluacion.nota}
+                            td Ver más
+                          else
+                            td No Evaluado
+
+
 
 block scripts-extra
   script(src='/javascripts/evaluacionesAlumno.js')

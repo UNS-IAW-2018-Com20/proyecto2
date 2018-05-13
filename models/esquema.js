@@ -19,6 +19,7 @@ const evaluadorSchema = new mongoose.Schema({
 })
 
 const evaluacionesSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   nombre: String,
   fecha: String,
   escala_notas: Number,
@@ -33,6 +34,7 @@ const comisionSchema = new mongoose.Schema({
 });
 
 const evaluaciones_comisionesSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   comision: {type: mongoose.Schema.Types.ObjectId, ref: 'comisiones'},
   evaluacion: {type: mongoose.Schema.Types.ObjectId, ref: 'evaluaciones'},
   evaluador: Number,

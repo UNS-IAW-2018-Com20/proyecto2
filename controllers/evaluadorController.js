@@ -4,6 +4,10 @@ const evaluacionesComisiones = require('../models/esquema').evaluaciones_comisio
 const evaluaciones = require('../models/esquema').evaluaciones;
 const evaluadores = require('../models/esquema').evaluadores;
 
+exports.mostrarVista = function(req,res,next){
+  res.render('evaluador',{nombre: req.user.nombre, dark:req.user.darkTheme});
+}
+
 exports.mostrarEvaluaciones = function(req, res, next){
   //req.user.id es la id que representa al evaluador
   //Con esa id es posible encontrar las comisiones_evaluaciones que le corresponden
