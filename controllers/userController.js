@@ -10,7 +10,7 @@ exports.registrar = function (req,res,next){
       email:req.body.email,
       password:req.body.password,
       darkTheme:false,
-      tipo:'Alumno'
+      tipo:'alumno'
   })
 
   /*Esta consulta es para comprobar si hay un usuario con la misma dirección de Email*/

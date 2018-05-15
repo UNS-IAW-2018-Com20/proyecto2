@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const mongoose = require('mongoose');
 const userController = require('../controllers/userController');
-const alumnoController = require('../controllers/alumnoController');
-const evaluadorController = require('../controllers/evaluadorController');
 const datosController = require('../controllers/datosController');
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -37,15 +34,6 @@ router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
 //Página principal del usuario
 router.get('/usuario', userController.redireccionarPaginaUsuario);
 
-//Página principal del evaluador
-router.get('/evaluador',evaluadorController.mostrarVista);
-
-router.get('/evaluador/obtenerEvaluaciones',evaluadorController.mostrarEvaluaciones);
-
-//Página principal del alumno
-router.get('/alumno', alumnoController.mostrarEvaluaciones);
-
-router.get('/alumno/obtenerEvaluaciones', alumnoController.mostrarEvaluaciones);
 
 router.get('/datos/obtenerEvaluaciones/:id',datosController.mostrarEvaluacionEspecifica);
 

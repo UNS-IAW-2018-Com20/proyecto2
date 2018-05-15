@@ -18,11 +18,13 @@ block content
                         tr
                           td #{val.evaluacion.nombre}
                           td #{val.evaluacion.descripcion}
-                          if val.evaluacion.nota == ""
-                            td Nota: #{val.evaluacion.nota}
-                            td Ver más
+                          if val.evaluacion_completa
+                            td Nota: #{val.nota}
+                            td
+                              button.btnEvaluaciones.btn.btn-primary.mr-2(id=val._id, type="submit") Ver más...
                           else
                             td No Evaluado
+                            td
 
 
 
