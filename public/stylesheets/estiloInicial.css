@@ -190,6 +190,14 @@ h3 {
     -webkit-border-radius: 0 0 10px 10px; 
     border-radius: 0 0 10px 10px;
 }
+.myform-bottom2{
+    padding: 0px 0px 0px 0px;
+    background: rgba(0, 0, 0, 0.3);
+    -moz-border-radius: 0 0 10px 10px; 
+    -webkit-border-radius: 0 0 10px 10px; 
+    border-radius: 0 0 10px 10px;
+    text-align: left;
+}
 .myform-bottom .mybtn {
     width: 100%;
 }
