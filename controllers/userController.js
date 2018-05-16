@@ -10,7 +10,7 @@ exports.registrar = function (req,res,next){
       email:req.body.email,
       password:req.body.password,
       darkTheme:false,
-      tipo:'Alumno'
+      tipo:'alumno'
   })
 
   /*Esta consulta es para comprobar si hay un usuario con la misma dirección de Email*/
@@ -57,4 +57,15 @@ exports.mostrarFormularioRegistro = function(req,res,next){
 
 exports.redireccionarPaginaUsuario = function(req,res,next){
   res.redirect('/'+req.user.tipo);
+};
+
+exports.cambiarEstilo = function(req,res,next){
+  //Modificar el tema
+  req.user.darkTheme = !req.user.darkTheme;
+  //Modificar base de DATOS
+  modeloUsuarios.update({id: req.user.id}, { darkTheme: req.user.darkTheme }, function(err, numberAffected, rawResponse) {
+    if (err)
+      res.render('error');
+    else res.status(200).end();
+  });
 };

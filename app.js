@@ -8,7 +8,8 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const LocalStrategy =require('passport-local').Strategy;
 const configAuth = require('./auth');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const alumnoRouter = require('./routes/alumno');
+const evaluadorRouter = require('./routes/evaluador');
 const expressSession = require('express-session');
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
@@ -70,8 +71,8 @@ passport.use(new TwitterStrategy({
           nombre: profile.displayName,
           email: profile.email,
           twitterId: profile.id,
-          tema: 1,
-          tipo:'Alumno'
+          darkTheme: false,
+          tipo:'alumno'
         });
         newUser.save(function(err){
           if (err)
@@ -106,7 +107,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/alumno', alumnoRouter);
+app.use('/evaluador',evaluadorRouter);
 
 //IMPORTANTEEEEEEEEEEEEEEE Pasarlo al routeo
 // catch 404 and forward to error handler

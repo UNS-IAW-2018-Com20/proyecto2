@@ -1,16 +1,23 @@
-const modeloComisiones = require('../models/comisiones').comisiones_integrantes;
-const modeloEvaluacionesComisiones = require('../models/comisiones').evaluaciones_comisiones;
+const alumnos = require('../models/esquema').alumnos;
+const comisiones = require('../models/esquema').comisiones;
+const evaluacionesComisiones = require('../models/esquema').evaluaciones_comisiones;
+const evaluaciones = require('../models/esquema').evaluaciones;
+
+
+/*exports.mostrarVista = function(req,res,next){
+  res.render('alumno',{nombre:req.user.nombre, dark:req.user.darkTheme});
+};*/
 
 exports.mostrarEvaluaciones = function(req, res, next){
-  //req.user.id es la id que representa al alumno
-  //Con esa id es posible encontrar las comisiones que forma parte
-  modeloComisiones.find({alumno: req.user.id},"comision",function(err,comisiones){
-    //result es un arreglo con las comisiones. Ej: [ {_id:...,comision:...},{_id:....,comision:....},etc]
-    //Por cada una de esas comisiones se deben mostrar las evaluaciones correspodientes
-    comisiones.forEach(function (itemComision){
-      modeloEvaluacionesComisiones.find({comision: itemComision.comision}, function(err,resultadoEvaluaciones){
-        res.render('alumno',{nombre:req.user.nombre, dark:req.user.darkTheme, evaluaciones: resultadoEvaluaciones});
-      });
+  alumnos.findOne({usuario_id: req.user._id}).exec().then(alumno =>{
+    let promesas = alumno.evaluaciones_comisiones.map((evaluacionComision) => {
+        return new Promise((resolve,reject) =>{
+          resolve(evaluacionesComisiones.findOne({_id: evaluacionComision}).populate('evaluacion').exec());
+        });
+    });
+    Promise.all(promesas).then(values => {
+      console.log(values);
+      res.render('alumno',{nombre:req.user.nombre, dark:req.user.darkTheme, evaluaciones:values});
     });
   });
 };
