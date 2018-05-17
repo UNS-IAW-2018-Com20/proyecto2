@@ -9,13 +9,24 @@ block content
             .col-lg-12.col-lg-offset-3.myform-cont
               .myform-top
                 #tituloEvaluar.myform-top-left
-                  h3 #{comision} - #{evaluacion}
+                  h2 #{nombreComision} - #{nombreEvaluacion}
+                  h3 #{descripcionEvaluacion} (#{fechaEvaluacion})
               .myform-bottom
                 #divEvaluar.col-lg-12
                   form#formEvaluacion
                     #divCriterios
                       | Criterios de Evaluacion
                       br
+                      each val, index in criterios
+                        label #{val.nombre}
+                         select.criterioSelect(id="criterio"+index)
+                           option 1
+                           option 2
+                           option 3
+                           option 4
+                           option 5
+                        textarea.form-control(rows="2" class="criterioText" cols="50" placeholder="Observación...")
+
                     label#comentario_general_label Comentario General
                     br
                     textarea.form-control(rows="4" name="comentario_general" required="true" cols="50" placeholder="Este campo es obligatorio")
@@ -23,9 +34,9 @@ block content
                     label#nota_general_label  Nota General:
                     label#nota_general  1
                     br
-                    input#backButton.btn.btn-primary(type="button" value="Volver" align="center")
+                    input#backButton.btn.btn-primary.mr-2(type="button" value="Volver" align="center")
                     input#califButton.btn.btn-primary(type="submit" align="center")
 
 
 block scripts-extra
-  script(src='/javascripts/evaluaciones.js')
+  script(src='/javascripts/evaluar.js')

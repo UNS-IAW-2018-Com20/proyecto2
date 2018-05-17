@@ -17,12 +17,12 @@
 
 }
 .navbar .navbar-text a {
- 
+
   color: #fff;
 }
 .navbar .navbar-text a:hover,
 .navbar .navbar-text a:focus {
-  color: #000; 
+  color: #000;
 }
 
 
@@ -123,8 +123,8 @@ body {
     padding-top:80px;
 
 }
-strong { 
-  font-weight: 500; 
+strong {
+  font-weight: 500;
 }
 a, a:hover, a:focus {
   text-decoration: none;
@@ -150,8 +150,8 @@ h3 {
     margin: 20px 0 10px 0;
     margin:0 auto;
 }
-.my-content .mydescription p { 
-    opacity: 0.8; 
+.my-content .mydescription p {
+    opacity: 0.8;
 }
 .myform-cont {
     margin-top: 35px;
@@ -161,19 +161,19 @@ h3 {
     overflow: hidden;
     padding: 0 25px 15px 25px;
     background: rgba(0, 0, 0, 0.35);
-    -moz-border-radius: 10px 10px 0 0; 
-    -webkit-border-radius: 10px 10px 0 0; 
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
     border-radius: 10px 10px 0 0;
-    
+
 }
-.myform-top-left { 
+.myform-top-left {
     float: left;
     width: 75%;
     padding-top: 25px;
     text-align: left;
 }
-.myform-top-left p { 
-    opacity: 0.8; 
+.myform-top-left p {
+    opacity: 0.8;
 }
 .myform-top-right {
     float: right;
@@ -186,24 +186,24 @@ h3 {
 .myform-bottom {
     padding: 25px 25px 30px 25px;
     background: rgba(0, 0, 0, 0.3);
-    -moz-border-radius: 0 0 10px 10px; 
-    -webkit-border-radius: 0 0 10px 10px; 
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
 }
 .myform-bottom2{
-    padding: 0px 0px 0px 0px;
+    padding: 25px 25px 25px 25px;
     background: rgba(0, 0, 0, 0.3);
-    -moz-border-radius: 0 0 10px 10px; 
-    -webkit-border-radius: 0 0 10px 10px; 
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
     text-align: left;
 }
 .myform-bottom .mybtn {
     width: 100%;
 }
-input[type="text"], 
-input[type="password"], 
-textarea, 
+input[type="text"],
+input[type="password"],
+textarea,
 textarea.form-control {
     height: 50px;
     vertical-align: middle;
@@ -212,11 +212,11 @@ textarea.form-control {
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
-    
+
 }
-input[type="text"]:focus, 
-input[type="password"]:focus, 
-textarea:focus, 
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
 textarea.form-control:focus {
     background: #fff;
     border: 2px solid #1AAE88;
@@ -231,16 +231,16 @@ button.mybtn {
     line-height: 40px;
     color: #fff;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-    
+
 }
-button.mybtn:hover, button.mybtn:active { 
-    opacity: 0.6; 
-    color: #fff; 
+button.mybtn:hover, button.mybtn:active {
+    opacity: 0.6;
+    color: #fff;
 }
-button.mybtn:focus { 
-    opacity: 0.6;  
-    color: #fff; 
-    background: #2f96b4; 
+button.mybtn:focus {
+    opacity: 0.6;
+    color: #fff;
+    background: #2f96b4;
 }
 
 /*LOGIN REDES SOCIALES*/
@@ -262,15 +262,15 @@ button.mybtn:focus {
     font-weight: 300;
     line-height: 16px;
     color: #fff;
-    -moz-border-radius: 4px; 
-    -webkit-border-radius: 4px; 
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     border-radius: 4px;
 }
-.mybtn-social:hover, .mybtn-social:focus, .mybtn-social:active:focus { 
+.mybtn-social:hover, .mybtn-social:focus, .mybtn-social:active:focus {
     outline: 0;
-    opacity: 0.6; 
-    background: rgba(0, 0, 0, 0.3); 
-    color: #fff; 
+    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
 }
 
 /* Media queries */
@@ -279,13 +279,13 @@ button.mybtn:focus {
 @media (min-width: 768px) and (max-width: 991px) {}
 
 @media (max-width: 767px) {
-    
+
     .mytop-content { padding: 60px 0 110px 0; }
 
 }
 
 @media (max-width: 415px) {
-    
+
     h1, h2 { font-size: 32px; }
 
 }

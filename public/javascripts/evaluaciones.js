@@ -21,70 +21,6 @@ $(function(){
 
 });
 
-function clickEvaluacion(identificacion){
-	//Si la evaluación es clickeable y no fue creada es necesaria obtener de local storage los datos
-	if (( $("#"+identificacion).attr('clickeable') == "true") && ($("#"+identificacion).attr('creada') == "false")){
-		$("#"+identificacion).attr('clickeable','false');
-		$("#"+identificacion).attr('creada','true');
-
-		var data = JSON.parse(window.localStorage.getItem("_datos"));
-
-		$.each(data.evaluaciones_comisiones, function() {
-			//Si la comisión corresponde a la evaluación y al evaluador entonces se agrega
-			if (("ev"+this.evaluacion == identificacion)&& (this.evaluador== idEvaluador)){
-				var completa = this.evaluacion_completa;
-				var nota = (completa === true) ? "<td>Nota: "+ this.nota +"</td><td>Observación: "+this.observaciones+"</td>" : "<td> No Evaluado</td><td><button type='button' class='btn btn-primary' id='evalCom"+this.comision+"'>Evaluar</button></td>";
-				var numeroComision = this.comision;
-				var comision = getElementArray(data.comisiones,"comision",numeroComision);
-				$("<tr class='"+identificacion+"' trComision'><td>"+comision.nombre+"</td>"+nota+"</tr>").insertAfter($("#"+identificacion));
-				$( "#evalCom"+numeroComision).click(function() {
-  					horaDeEvaluar(numeroComision,comision.nombre);
-				});
-			}
-
-		});
-
-	} else if (( $("#"+identificacion).attr('clickeable') == "true") && ($("#"+identificacion).attr('creada') == "true")){
-		//Si había sido creada simplemente se muestra nuevamente
-		$("."+identificacion).show();
-		$("#"+identificacion).attr('clickeable','false');
-	} else {
-		//Si no era clickeable entonces estaba expandida y se oculta
-		$("."+identificacion).hide();
-		$("#"+identificacion).attr('clickeable','true');
-	}
-}
-
-//Devuelve un objeto de "arreglo" cuyo atributo "elemento" sea igual a "valor"
-function getElementArray(arreglo,elemento,valor){
-	var resultado = null;
-	var encontrado = false;
-	var i=0;
-	while (i < Object.keys(arreglo).length && !encontrado){
-		if (arreglo[i][elemento] == valor){
-			encontrado = true;
-			resultado = arreglo[i];
-		}
-		i++;
-	}
-	return resultado;
-}
-
-//Devuelve varios objetos de "arreglo" cuyos atributos "elemento" sean igual a "valor"
-function getElementsArray(arreglo,elemento,valor){
-	var resultado = new Object();
-	var i=0;
-	var j=0;
-	while (i < Object.keys(arreglo).length){
-		if (arreglo[i][elemento] == valor){
-			resultado[j] = arreglo[i];
-			j++;
-		}
-		i++;
-	}
-	return resultado;
-}
-
 
 //Cambio de pantalla a evaluación
 function horaDeEvaluar(numeroDeComision,nombreDeComision){
@@ -101,7 +37,7 @@ function horaDeEvaluar(numeroDeComision,nombreDeComision){
 	//Creación del botón para seleccionar la nota correspondiente
 	var select = $(document.createElement('select'));
 	$.each(escalaNotas,function(){
-		select.append("<option>"+this.nota+"</option>")
+		select.append("<option>"+this.nota+"</option>");
 	});
 	select.attr("form-control");
 	select.attr("id","criterio"+this.criterio_evaluacion);

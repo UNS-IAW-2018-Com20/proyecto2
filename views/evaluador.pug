@@ -10,11 +10,22 @@ block content
               .myform-top
                 .myform-top-left
                   h3 Listado de Evaluaciones
-                  // <p>Comision:</p>
               .myform-bottom
                 #divEvaluaciones.container
                   table#tablaEvaluaciones.table.table-hover
                     tbody
+                      each val in evaluaciones
+                        tr
+                          td #{val.evaluacion.nombre}
+                          td #{val.evaluacion.descripcion}
+                          if val.evaluacion_completa
+                            td Nota: #{val.nota}
+                            td Observacion: #{val.observaciones}
+
+                          else
+                            td No Evaluado
+                            td
+                              button.btnEvaluaciones.btn.btn-primary.mr-2(id=val._id, type="submit") Evaluar
 
 block scripts-extra
   script(src='/javascripts/evaluacionesEvaluador.js')

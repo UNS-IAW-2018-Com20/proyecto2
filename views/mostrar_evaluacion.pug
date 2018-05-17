@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+  #divEvaluarGeneral.col-lg-12
+      .my-content
+        .container
+          .row
+            .col-lg-12.col-lg-offset-3.myform-cont
+              .myform-top
+                #tituloEvaluar.myform-top-left
+                  div#divTitulo.form-group(class="row")
+                    h2 #{nombreComision} - #{nombreEvaluacion}
+                    h3 #{descripcionEvaluacion} (#{fechaEvaluacion})
+              .myform-bottom2
+                ul
+                  each val in criterios
+                    li #{val.nombre}
+                      ul
+                        li Nota: #{val.nota}
+                        li #{val.obs}
+                  li Nota Final: #{notaEvaluacion}
+                  li Observaciones: #{observacionesEvaluacion}
+                div.text-center
+                  button.btn.btn-primary.mr-2(id="btnVolver") Volver
+
+
+
+
+block scripts-extra
+  script(src='/javascripts/evaluacionesAlumno.js')
+  //script(src='/javascripts/evaluaciones.js')
