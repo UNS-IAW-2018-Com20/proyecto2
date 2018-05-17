@@ -5,7 +5,10 @@ const evaluadorController = require('../controllers/evaluadorController');
 //Página principal del evaluador
 router.get('/',evaluadorController.mostrarEvaluaciones);
 
-router.get('/evaluar', evaluadorController.evaluar);
+//router.post('/',evaluadorController.evaluar);
 
-router.post('/evaluar', evaluadorController.evaluar_post);
+router.post('/enviar', evaluadorController.evaluarPost);
+
+router.get('/evaluar/:id?', evaluadorController.evaluar);
+
 module.exports = router;

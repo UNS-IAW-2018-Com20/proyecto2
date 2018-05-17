@@ -4,15 +4,7 @@ $("#backButton").click(function(){
 });
 
 $("#formEvaluacion").submit(function(event){
-  event.preventDefault();
-  //Se agrega la nota general al formulario
-  $('<input>').attr({
-      type: 'hidden',
-      name: 'nota_General',
-      value: $("#nota_general").text()
-  }).appendTo('#formEvaluacion');
-
-  $(this).unbind('submit').submit();
+  window.location.href = "/evaluador/evaluar/enviar/"
 });
 
 
