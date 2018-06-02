@@ -9,6 +9,6 @@ router.get('/',evaluadorController.mostrarEvaluaciones);
 
 router.post('/enviar', evaluadorController.evaluarPost);
 
-router.get('/evaluar/:id?', evaluadorController.evaluar);
+router.get('/evaluar', evaluadorController.evaluar);
 
 module.exports = router;

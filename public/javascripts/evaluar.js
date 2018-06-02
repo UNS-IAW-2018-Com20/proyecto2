@@ -8,7 +8,7 @@ $("#formEvaluacion").submit(function(event){
 });
 
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 
   $(".criterioSelect").change(function(){
     let i;
@@ -21,5 +21,5 @@ $(document).ready(function() {
 
     $("#nota_general").text(total/cantidadCriterios);
 
-  });
+  });*/
 });

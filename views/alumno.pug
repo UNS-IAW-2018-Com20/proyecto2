@@ -14,14 +14,14 @@ block content
                 #divEvaluaciones.container
                   table#tablaEvaluaciones.table.table-hover
                     tbody
-                      each val in evaluaciones
+                      each eval in evaluaciones
                         tr
-                          td #{val.evaluacion.nombre}
-                          td #{val.evaluacion.descripcion}
-                          if val.evaluacion_completa
-                            td Nota: #{val.nota}
+                          td #{eval.evaluacion_nombre}
+                          td #{eval.descripcion}
+                          if eval.publicada
+                            td Nota: #{eval.nota}
                             td
-                              button.btnEvaluaciones.btn.btn-primary.mr-2(id=val._id, type="submit") Ver más...
+                              button.btnEvaluaciones.btn.btn-primary.mr-2(id=eval.evaluacion_id, type="submit") Ver más...
                           else
                             td No Evaluado
                             td
