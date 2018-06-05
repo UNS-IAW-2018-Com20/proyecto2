@@ -9,6 +9,7 @@ const alumnoSchema = new mongoose.Schema({
   nombres: String,
   lu: String,
   evaluaciones_comisiones: [{
+    id_general: String,
     comision_id: String,
     comision_nombre: String,
     evaluacion_id: String,
@@ -40,6 +41,7 @@ const evaluadorSchema = new mongoose.Schema({
   apellido: String,
   nombres: String,
   evaluaciones_comisiones: [{
+    id_general: String,
     comision_id: String,
     comision_nombre: String,
     evaluacion_id: String,
