@@ -17,6 +17,8 @@ const db = require('./models/db');
 const modeloUsuarios = require('./models/usuarios').usuarios;
 const app = express();
 const flash = require('connect-flash');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 // Configure Passport authenticated session persistence.
@@ -45,11 +47,13 @@ passport.use(new LocalStrategy(
           return done(err);
         }
 
-        if (!user || (user.password != password)) {
-          return done(null, false, {message: 'El usuario o la contraseña son incorrectos.'});
-        }
+        bcrypt.compare(password, user.password, function(err, res) {
+          if (res=="false")
+            return done(null, false, {message: 'El usuario o la contraseña son incorrectos.'});
 
-        return done(null, user);
+          return done(null, user);
+        });
+
       });
   }
 ));
