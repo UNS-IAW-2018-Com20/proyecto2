@@ -19,9 +19,9 @@ block content
                     input(type="hidden" id="cantidadCriterios" value=criterios.length)
                     each val, index in criterios
                       label #{val}
-                      select.criterioSelect(name="arregloCriterios")
+                      select.criterioSelect(id="criterio"+index name="arregloCriterios")
                         each val in escala_notas.notas
-                          option #{val.nota} (#{val.concepto})
+                          option(value=val.nota) #{val.nota} (#{val.concepto})
                       textarea.form-control(rows="2" name="arregloCriterios" class="criterioText" cols="50" placeholder="Observación...")
 
                     label#comentario_general_label Comentario General
