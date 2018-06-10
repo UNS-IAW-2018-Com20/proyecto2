@@ -3,10 +3,11 @@ const router = express.Router();
 const passport = require('passport');
 const userController = require('../controllers/userController');
 const datosController = require('../controllers/datosController');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { success: req.session.success, error: req.session.error });
-  req.session.success = true;
+  let error = req.flash('error')[0];
+  res.render('login',{error_message: error});
 });
 
 router.get('/register', userController.mostrarFormularioRegistro);
@@ -28,8 +29,11 @@ router.get('/auth/twitter/callback',
                                       failureRedirect: '/' }));
 
 //Login
-router.post('/',  passport.authenticate('local', { successRedirect: '/usuario',
-                                    failureRedirect: '/' }));
+router.post('/',  passport.authenticate('local', {
+        successRedirect: '/usuario',
+        failureRedirect: '/',
+        failureFlash: true,
+       }));
 
 //Página principal del usuario
 router.get('/usuario', userController.redireccionarPaginaUsuario);

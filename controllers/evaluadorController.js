@@ -2,6 +2,7 @@ const evaluadores = require('../models/esquema').evaluadores;
 const alumnos = require('../models/esquema').alumnos;
 
 exports.mostrarEvaluaciones = function(req, res, next){
+  //Muestras las evaluaciones_comisiones que tiene asignadas el evaluador
   evaluadores.findOne({usuario_id: req.user._id}).exec().then(evaluador =>{
     let evaluaciones = evaluador.evaluaciones_comisiones;
     req.session.evaluaciones = evaluaciones;

@@ -8,18 +8,18 @@ $("#formEvaluacion").submit(function(event){
 });
 
 
-/*$(document).ready(function() {
+$(document).ready(function() {
 
   $(".criterioSelect").change(function(){
     let i;
     let total = 0;
-    let cantidadCriterios = 3;
+    //cantidad de criterios
+    let cantidadCriterios = $("#cantidadCriterios").val();
 
     for (i=0;i<cantidadCriterios;i++){
       total+= parseInt($("#criterio"+i).find(":selected").text());
     }
 
     $("#nota_general").text(total/cantidadCriterios);
-
-  });*/
+  });
 });

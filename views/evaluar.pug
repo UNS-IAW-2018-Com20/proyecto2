@@ -16,6 +16,7 @@ block content
                   form#formEvaluacion(method="post" action="/evaluador/enviar")
                     |Criterios de Evaluacion
                     br
+                    input(type="hidden" id="cantidadCriterios" value=criterios.length)
                     each val, index in criterios
                       label #{val}
                       select.criterioSelect(name="arregloCriterios")

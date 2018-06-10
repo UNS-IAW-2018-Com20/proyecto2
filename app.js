@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 const db = require('./models/db');
 const modeloUsuarios = require('./models/usuarios').usuarios;
 const app = express();
+const flash = require('connect-flash');
 
 
 // Configure Passport authenticated session persistence.
@@ -44,13 +45,10 @@ passport.use(new LocalStrategy(
           return done(err);
         }
 
-        if (!user) {
-          return done(null, false);
+        if (!user || (user.password != password)) {
+          return done(null, false, {message: 'El usuario o la contraseña son incorrectos.'});
         }
 
-        if (user.password != password) {
-          return done(null, false);
-        }
         return done(null, user);
       });
   }
@@ -97,6 +95,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(flash());
 //tw
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));

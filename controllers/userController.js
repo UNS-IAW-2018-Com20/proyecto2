@@ -1,5 +1,4 @@
 const modeloUsuarios = require('../models/usuarios').usuarios;
-var alerta=0;
 
 exports.registrar = function (req,res,next){
   /*Acá formo un modelo del usuario para insertar en la base de datos*/

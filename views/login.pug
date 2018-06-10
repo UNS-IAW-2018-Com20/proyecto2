@@ -14,8 +14,8 @@ block content
               .myform-top-right
                 i.fa.fa-user
             .myform-bottom
-              if(alertalog==1)
-                div#alerta5.form-group(class="alert alert-danger" role="alert") Error: usuario o contraseña incorrectos.
+              if(error_message)
+                div#alerta5.form-group(class="alert alert-danger" role="alert") Error: #{error_message}
               form(role="form" action="" method="post")
                 .form-group
                   input#email.form-control(type="text" name="username" placeholder="Email...")
