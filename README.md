@@ -7,10 +7,10 @@ Se corrigieron varios errores:
 * Los passwords se almacenan encriptados.
 * Sólo dos decimales en las notas.
 \
-###Usuarios y contraseñas para el Acceso
-#####Evaluador
+### Usuarios y contraseñas para el Acceso
+##### Evaluador
 * Usuario: walterwhite@gmail.com
 * Contraseña: *bluemeta*
-#####Alumno
+##### Alumno
 * Usuario: jorgesilviocardozo@gmail.com
 * Contraseña: *aprobado*
