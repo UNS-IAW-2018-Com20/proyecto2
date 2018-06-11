@@ -6,7 +6,7 @@ Se corrigieron varios errores:
 * El callback del auth del acceso a twitter redirige a heroku luego de la autenticación.
 * Los passwords se almacenan encriptados.
 * Sólo dos decimales en las notas.
-\
+
 ### Usuarios y contraseñas para el Acceso
 ##### Evaluador
 * Usuario: walterwhite@gmail.com
