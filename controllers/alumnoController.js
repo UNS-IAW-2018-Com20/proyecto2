@@ -1,6 +1,7 @@
 const alumnos = require('../models/esquema').alumnos;
 
 exports.mostrarEvaluaciones = function(req, res, next){
+  //Se busca el alumno correspondiente al usuario y se imprimen sus evaluaciones
   alumnos.findOne({usuario_id: req.user._id}).exec().then(alumno =>{
     let evaluaciones = alumno.evaluaciones_comisiones;
     req.session.evaluaciones = evaluaciones;

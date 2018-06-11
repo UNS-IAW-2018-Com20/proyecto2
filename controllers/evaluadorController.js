@@ -21,16 +21,13 @@ exports.evaluar = function(req, res, next){
 };
 
 exports.evaluarPost = function(req,res,next){
-  console.log(req.body);
   let arregloCriterios = req.body.arregloCriterios;
   let nuevoArregloCriterios = [];
-
+  //Se forma un arreglo con los la nota y observacion de los criterios.
   for (let i = 0; i < arregloCriterios.length; i+=2){
     nuevoArregloCriterios.push({nota: arregloCriterios[i], observacion: arregloCriterios[i+1]});
   };
-
-  console.log(req.session.evaluar);
-
+  //Se hace update de todos los alumnos inscriptos a esa comisión
   alumnos.update({'evaluaciones_comisiones.id_general': req.session.evaluar}, {'$set': {
     'evaluaciones_comisiones.$.observacion': req.body.comentario_general,
     'evaluaciones_comisiones.$.nota':req.body.nota_General,
@@ -38,6 +35,7 @@ exports.evaluarPost = function(req,res,next){
     'evaluaciones_comisiones.$.notas_criterios': nuevoArregloCriterios
   }}, {"multi": true}, function (err){
     if (!err){
+      //Se hace update también en el evaluador
       evaluadores.update({'evaluaciones_comisiones.id_general': req.session.evaluar}, {'$set': {
         'evaluaciones_comisiones.$.observacion': req.body.comentario_general,
         'evaluaciones_comisiones.$.nota':req.body.nota_General,
