@@ -33,14 +33,14 @@ exports.evaluarPost = function(req,res,next){
 
   alumnos.update({'evaluaciones_comisiones.id_general': req.session.evaluar}, {'$set': {
     'evaluaciones_comisiones.$.observacion': req.body.comentario_general,
-    //'evaluaciones_comisiones.$.nota':req.body.nota,
+    'evaluaciones_comisiones.$.nota':req.body.nota_General,
     'evaluaciones_comisiones.$.publicada': true,
     'evaluaciones_comisiones.$.notas_criterios': nuevoArregloCriterios
-  }}, function (err){
+  }}, {"multi": true}, function (err){
     if (!err){
       evaluadores.update({'evaluaciones_comisiones.id_general': req.session.evaluar}, {'$set': {
         'evaluaciones_comisiones.$.observacion': req.body.comentario_general,
-        //'evaluaciones_comisiones.$.nota':req.body.nota,
+        'evaluaciones_comisiones.$.nota':req.body.nota_General,
         'evaluaciones_comisiones.$.publicada': true,
         'evaluaciones_comisiones.$.notas_criterios': nuevoArregloCriterios
       }}, function (err){
