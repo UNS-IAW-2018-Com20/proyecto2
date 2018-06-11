@@ -16,14 +16,13 @@ $(document).ready(function() {
     let total = 0;
     //cantidad de criterios
     let cantidadCriterios = $("#cantidadCriterios").val();
-    console.log(cantidadCriterios);
 
     for (i=0;i<cantidadCriterios;i++){
       console.log($("#criterio"+i).find(":selected").val());
       total+= parseInt($("#criterio"+i).find(":selected").val());
     }
-    console.log(total);
-    $("#nota_general").text(total/cantidadCriterios);
+    let valor = total / cantidadCriterios;
+    $("#nota_general").text(valor.toFixed(2));
   });
 
   //Acción del submit del formulario de evaluación
