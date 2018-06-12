@@ -16,7 +16,7 @@ block content
                     tbody
                       each eval in evaluaciones
                         tr
-                          td #{eval.evaluacion_nombre}
+                          td #{eval.evaluacion_nombre} - #{eval.comision_nombre}
                           td #{eval.descripcion}
                           if eval.publicada
                             td Nota: #{eval.nota}

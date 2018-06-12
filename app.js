@@ -49,7 +49,12 @@ passport.use(new LocalStrategy(
         if (user === null){
           return done(null,false, {message: 'El usuario o la contraseña son incorrectos.'});
         }
-
+        console.log("why");
+        console.log(user.password);
+        console.log(password);
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(password,salt);
+        console.log(hash);
         bcrypt.compare(password, user.password, function(err, res) {
           console.log(res);
           if (res===false){
