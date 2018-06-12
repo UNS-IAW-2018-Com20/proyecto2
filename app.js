@@ -44,12 +44,17 @@ passport.use(new LocalStrategy(
         email: username
       }, function(err, user) {
         if (err) {
-          return done(err);
+          return done(null,false, {message: 'Problemas en el servidor, vuelva a interntarlo más tarde.'});
+        }
+        if (user === null){
+          return done(null,false, {message: 'El usuario o la contraseña son incorrectos.'});
         }
 
         bcrypt.compare(password, user.password, function(err, res) {
-          if (res=="false")
+          console.log(res);
+          if (res===false){
             return done(null, false, {message: 'El usuario o la contraseña son incorrectos.'});
+          }
 
           return done(null, user);
         });

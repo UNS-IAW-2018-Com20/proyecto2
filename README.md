@@ -11,6 +11,12 @@ Se corrigieron varios errores:
 ##### Evaluador
 * Usuario: walterwhite@gmail.com
 * Contraseña: *bluemeta*
+* Usuario: mgallardo
+* Contraseña: *sarachi*
 ##### Alumno
 * Usuario: jorgesilviocardozo@gmail.com
 * Contraseña: *aprobado*
+* Usuario: terceroguillermo@gmail.com  
+* Contraseña: *tercero*
+* Usuario: lionelmessi@gmail.com
+* Contraseña: *pulga*
